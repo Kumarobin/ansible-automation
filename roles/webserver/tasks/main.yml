@@ -1,0 +1,32 @@
+---
+- name: Configure Web Servers
+  hosts: managed
+  become: true
+
+  tasks:
+
+    - name: Install nginx on Ubuntu
+      ansible.builtin.apt:
+        name: nginx
+        state: present
+      when: ansible_distribution == "Ubuntu"
+
+    - name: Install httpd on Amazon Linux
+      ansible.builtin.dnf:
+        name: httpd
+        state: present
+      when: ansible_distribution == "Amazon"
+
+    - name: Ensure nginx is running on Ubuntu
+      ansible.builtin.service:
+        name: nginx
+        state: started
+        enabled: true
+      when: ansible_distribution == "Ubuntu"
+
+    - name: Ensure httpd is running on Amazon Linux
+      ansible.builtin.service:
+        name: httpd
+        state: started
+        enabled: true
+      when: ansible_distribution == "Amazon"

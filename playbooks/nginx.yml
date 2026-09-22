@@ -1,0 +1,10 @@
+---
+- name: Configure Nginx
+  hosts: managed
+  become: true
+
+  vars:
+    nginx_port: "{{ 80 if ansible_distribution == 'Ubuntu' else 8080 }}"
+
+  roles:
+    - nginx
