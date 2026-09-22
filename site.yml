@@ -1,0 +1,8 @@
+---
+- name: Configure all managed nodes
+  hosts: managed
+  become: true
+  roles:
+    - git
+    - docker
+    - nginx

@@ -1,0 +1,4 @@
+---
+nginx_conf_path_ubuntu: /etc/nginx/conf.d/ansible-demo.conf
+nginx_conf_path_amazon: /etc/nginx/nginx.conf
+docker_package: docker.io

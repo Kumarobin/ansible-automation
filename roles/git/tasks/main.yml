@@ -1,10 +1,13 @@
 ---
-- name: Install Git on managed servers
-  hosts: managed
-  become: true
+- name: Install Git on Ubuntu
+  ansible.builtin.apt:
+    name: git
+    state: present
+    update_cache: true
+  when: ansible_distribution == "Ubuntu"
 
-  tasks:
-    - name: Ensure Git is installed
-      ansible.builtin.package:
-        name: git
-        state: present
+- name: Install Git on Amazon Linux
+  ansible.builtin.dnf:
+    name: git
+    state: present
+  when: ansible_distribution == "Amazon"
